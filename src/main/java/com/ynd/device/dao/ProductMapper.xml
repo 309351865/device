@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ynd.device.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.ynd.device.domain.Product">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="debt_power_type" jdbcType="INTEGER" property="debtPowerType" />
+    <result column="year_earn_percent" jdbcType="INTEGER" property="yearEarnPercent" />
+    <result column="deadline" jdbcType="INTEGER" property="deadline" />
+    <result column="start_money" jdbcType="DECIMAL" property="startMoney" />
+    <result column="pay_type" jdbcType="INTEGER" property="payType" />
+    <result column="total_money" jdbcType="DECIMAL" property="totalMoney" />
+    <result column="get_money" jdbcType="DECIMAL" property="getMoney" />
+    <result column="presentation" jdbcType="VARCHAR" property="presentation" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="audit_type" jdbcType="INTEGER" property="auditType" />
+    <result column="audit_fail_reason" jdbcType="VARCHAR" property="auditFailReason" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, type, debt_power_type, year_earn_percent, deadline, start_money, pay_type, 
+    total_money, get_money, presentation, company_id, audit_type, audit_fail_reason
+  </sql>
+  <select id="selectByExample" parameterType="com.ynd.device.domain.ProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ynd.device.domain.ProductExample">
+    delete from t_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ynd.device.domain.Product" useGeneratedKeys="true">
+    insert into t_product (name, type, debt_power_type, 
+      year_earn_percent, deadline, start_money, 
+      pay_type, total_money, get_money, 
+      presentation, company_id, audit_type, 
+      audit_fail_reason)
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{debtPowerType,jdbcType=INTEGER}, 
+      #{yearEarnPercent,jdbcType=INTEGER}, #{deadline,jdbcType=INTEGER}, #{startMoney,jdbcType=DECIMAL}, 
+      #{payType,jdbcType=INTEGER}, #{totalMoney,jdbcType=DECIMAL}, #{getMoney,jdbcType=DECIMAL}, 
+      #{presentation,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{auditType,jdbcType=INTEGER}, 
+      #{auditFailReason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ynd.device.domain.Product" useGeneratedKeys="true">
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="debtPowerType != null">
+        debt_power_type,
+      </if>
+      <if test="yearEarnPercent != null">
+        year_earn_percent,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="startMoney != null">
+        start_money,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="totalMoney != null">
+        total_money,
+      </if>
+      <if test="getMoney != null">
+        get_money,
+      </if>
+      <if test="presentation != null">
+        presentation,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="auditType != null">
+        audit_type,
+      </if>
+      <if test="auditFailReason != null">
+        audit_fail_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="debtPowerType != null">
+        #{debtPowerType,jdbcType=INTEGER},
+      </if>
+      <if test="yearEarnPercent != null">
+        #{yearEarnPercent,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=INTEGER},
+      </if>
+      <if test="startMoney != null">
+        #{startMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="totalMoney != null">
+        #{totalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="getMoney != null">
+        #{getMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="presentation != null">
+        #{presentation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null">
+        #{auditType,jdbcType=INTEGER},
+      </if>
+      <if test="auditFailReason != null">
+        #{auditFailReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ynd.device.domain.ProductExample" resultType="java.lang.Long">
+    select count(*) from t_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_product
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.debtPowerType != null">
+        debt_power_type = #{record.debtPowerType,jdbcType=INTEGER},
+      </if>
+      <if test="record.yearEarnPercent != null">
+        year_earn_percent = #{record.yearEarnPercent,jdbcType=INTEGER},
+      </if>
+      <if test="record.deadline != null">
+        deadline = #{record.deadline,jdbcType=INTEGER},
+      </if>
+      <if test="record.startMoney != null">
+        start_money = #{record.startMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalMoney != null">
+        total_money = #{record.totalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.getMoney != null">
+        get_money = #{record.getMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.presentation != null">
+        presentation = #{record.presentation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditType != null">
+        audit_type = #{record.auditType,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditFailReason != null">
+        audit_fail_reason = #{record.auditFailReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_product
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      debt_power_type = #{record.debtPowerType,jdbcType=INTEGER},
+      year_earn_percent = #{record.yearEarnPercent,jdbcType=INTEGER},
+      deadline = #{record.deadline,jdbcType=INTEGER},
+      start_money = #{record.startMoney,jdbcType=DECIMAL},
+      pay_type = #{record.payType,jdbcType=INTEGER},
+      total_money = #{record.totalMoney,jdbcType=DECIMAL},
+      get_money = #{record.getMoney,jdbcType=DECIMAL},
+      presentation = #{record.presentation,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      audit_type = #{record.auditType,jdbcType=INTEGER},
+      audit_fail_reason = #{record.auditFailReason,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ynd.device.domain.Product">
+    update t_product
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="debtPowerType != null">
+        debt_power_type = #{debtPowerType,jdbcType=INTEGER},
+      </if>
+      <if test="yearEarnPercent != null">
+        year_earn_percent = #{yearEarnPercent,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=INTEGER},
+      </if>
+      <if test="startMoney != null">
+        start_money = #{startMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="totalMoney != null">
+        total_money = #{totalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="getMoney != null">
+        get_money = #{getMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="presentation != null">
+        presentation = #{presentation,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null">
+        audit_type = #{auditType,jdbcType=INTEGER},
+      </if>
+      <if test="auditFailReason != null">
+        audit_fail_reason = #{auditFailReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ynd.device.domain.Product">
+    update t_product
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      debt_power_type = #{debtPowerType,jdbcType=INTEGER},
+      year_earn_percent = #{yearEarnPercent,jdbcType=INTEGER},
+      deadline = #{deadline,jdbcType=INTEGER},
+      start_money = #{startMoney,jdbcType=DECIMAL},
+      pay_type = #{payType,jdbcType=INTEGER},
+      total_money = #{totalMoney,jdbcType=DECIMAL},
+      get_money = #{getMoney,jdbcType=DECIMAL},
+      presentation = #{presentation,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      audit_type = #{auditType,jdbcType=INTEGER},
+      audit_fail_reason = #{auditFailReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

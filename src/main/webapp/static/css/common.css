@@ -1,0 +1,200 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+input[type=text]{
+    height: 16px;
+    padding: 4px 5px;
+}
+iframe{
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.noscroll{
+    overflow:hidden;
+}
+#toolbar, #searchbar, .toolbar, .searchbar{
+    padding: 10px 15px;
+}
+#toolbar, .toolbar{
+    border-bottom: 3px solid #ddd;
+}
+#toolbar > .easyui-linkbutton, .toolbar > .easyui-linkbutton{
+    margin-right: 8px;
+}
+#searchform .row, .searchform .row{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 16px;
+}
+.easyui-combobox{
+    height: 30px !important;
+    width: 200px;
+}
+.main-tab-content{
+    padding: 5px;
+}
+html, button, input, select, textarea {
+    font-family: sans-serif;
+}
+body {
+    font-weight: 400;
+    font: 14px/100% "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+    margin: 0;
+    color: #5e5e5e;
+    line-height: 1.42857;
+}
+.layout-panel-north{
+    overflow: visible;
+}
+.header-bar{
+    height: 50px;
+    padding: 0 15px ;
+    overflow: visible;
+    background: #5E87B0;
+    color: #fff;
+}
+.header-bar img{
+    float: left;
+    height: 40px;
+    margin-right: 24px;
+    padding: 5px 0;
+}
+.top-left{
+    float: left;
+    line-height: 50px;
+}
+.top-left > span{
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+.top-right{
+    float: right;
+    margin: 0px;
+    list-style: outside none none;
+}
+.dropdown-toggle > .iconfont{
+    font-size: 12px;
+}
+.dropdown.user .icon-person{
+    font-size:18px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.dropdown-toggle i, .dropdown-toggle span{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.top-right > li{
+    float: left;
+    height: 50px;
+    position: relative;
+}
+.top-right > li > a{
+    line-height:20px;
+    padding: 15px;
+    display: block;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+}
+.top-right > li.user > a{
+    padding: 15px 15px 14px 15px;
+}
+.top-right > li > a:hover, .top-right > li > a:focus, .top-right li.open > a{
+    background: #80a0c1 !important;
+}
+.top-right > li > .dropdown-menu{
+    left: auto;
+    right: 0;
+}
+.dropdown-menu {
+    background: #f4f4f4;
+    border: 1px solid #c7cbd5;
+    display: none;
+    font-size: 14px;
+    left: 0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+    list-style: outside none none;
+    margin: 0;
+    max-width: 300px;
+    min-width: 166px;
+    padding: 0;
+    position: absolute;
+    text-shadow: none;
+    top: 100%;
+    z-index: 1000;
+}
+.dropdown-menu li a {
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #e7e7e7;
+    display: block;
+    color: #333333;
+    line-height: 40px;
+    clear: both;
+    padding: 0 10px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+.dropdown-menu li a:hover{
+    background: #fff;
+}
+.dropdown.user .dropdown-menu {
+    border-top: medium none;
+}
+.dropdown.open .dropdown-menu{
+    display: block;
+}
+.dropdown-menu a i{
+    font-size: 14px;
+    font-weight:bold;
+    margin-right: 8px;
+    display: inline-block;
+}
+#layout {
+    height: auto !important;
+    height: 100px;
+    min-height: 400px;
+}
+.easyui-window, .easyui-dialog{
+    padding:15px 100px 0;
+}
+.horizontal-form > table{
+    border-spacing: 0 5px;
+    margin: 0 auto;
+}
+.form-bottom-buttons{
+    text-align: center;
+    margin: 24px 0;
+}
+.form-bottom-buttons a{
+    margin-right: 10px;
+}
+.horizontal-form table tr td:first-child {
+    text-align: right;
+}
+.form-vertical .row{
+    padding: 8px 0;
+}
+.form-vertical .row label{
+    width: 80px;
+    display: inline-block;
+}
+fieldset{
+    border-color: #95B8E7;
+    border-radius: 3px;
+    padding: 8px;
+    margin-bottom: 24px;
+    border-width: 1px;
+}
+fieldset legend{
+    color: #aaa;
+    padding: 0 10px;
+}
